@@ -1,0 +1,133 @@
+.rowContent{
+	width:80%
+}
+
+#topPanel{
+	position: absolute; 
+	top:100px;
+}
+
+#mainContent{
+	position: absolute; 
+	top:150px;
+	width:80%;
+}
+
+#sidebar{
+	height:600px;
+	overflow: hidden;
+    overflow-y: auto;
+}
+
+#mapContainer{
+	height:600px;
+}
+
+#choiceForm{
+	position: absolute; 
+	top:150px;
+}
+
+#areaNameInput{
+	width:200px;
+}
+
+.topPanelElement{
+	padding-left:10px;
+}
+
+.areaNameDropdown {
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.loginForm{
+	width:50%;	
+	margin: 0 auto;
+}
+
+#preferenceContainerInner{
+	height:500px	
+}
+
+#preferenceContainerInner{
+	height:550px	
+}
+
+.loginButton{
+	width:150px;	
+	margin: 0 auto;
+}
+
+.loggedInText{
+	padding-right:100px;
+	padding-top:20px;	
+}
+
+.panel-heading a:after {
+    content:"\e114";
+    float: right;
+    color: grey;
+}
+
+.panel-heading a.collapsed:after {
+    content:"\e080";
+}
+
+#preferenceListDiv{
+	height:450px;
+	overflow: hidden;
+	overflow-y:auto;
+}
+
+ #draggablePanelList .panel-heading {
+    cursor: move;
+ }
+ 
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  #sortable li span { position: absolute; margin-left: -1.3em; }
+  
+  #sortablePanel{
+  	float: left;
+  	width:200px;
+    height:100px;
+    margin-top:2px;
+    margin-bottom:2px;
+    text-align: center;
+  }
+ 
+#prefLabel{
+	 float:left;
+	 margin-right:10px;
+}
+
+#prefDropDown{
+	float:left;
+}
+
+.placeholder {
+    border: 1px solid green;
+    background-color: white;
+    -webkit-box-shadow: 0px 0px 10px #888;
+    -moz-box-shadow: 0px 0px 10px #888;
+    box-shadow: 0px 0px 10px #888;
+}
+.tile {
+    height: 90px;
+}
+.grid {
+    margin-top: 1em;
+}
+
+#preferencePanel_profile{
+	height:50px;
+	bg-colour:"red";	
+}
+
+.sidebarHeader{
+	width:100%;	
+}
+  
+ 
