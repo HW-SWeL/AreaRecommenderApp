@@ -50,9 +50,12 @@ function insertUser(username, password) {
 	xmlhttp.send();
 }
 
-function loginConfirm(username, password) {
+function loginConfirm() {
 	var xmlhttp;
-	
+	var username=document.getElementById("username").value;
+	var password=document.getElementById("password").value;
+	console.log(username,password);
+
 	if (window.XMLHttpRequest) {
 	    // code for IE7+, Firefox, Chrome, Opera, Safari
 	    xmlhttp = new XMLHttpRequest();
@@ -78,10 +81,6 @@ function loginConfirm(username, password) {
 	xmlhttp.send();
 }
 
-function loginConfirm2(){
-	console.log(document.getElementById("username").value,document.getElementById("password").value);
-	loginConfirm(document.getElementById("username").value,document.getElementById("password").value);
-}
 
 </script>
 
@@ -98,7 +97,7 @@ function loginConfirm2(){
 			</ul>
 			<div id="myTabContent" class="tab-content" >
 				<div class="tab-pane active in" id="login">
-					<form class="form-horizontal" action='javascript:loginConfirm2()'>
+					<form class="form-horizontal" action='javascript:loginConfirm()'>
 						<fieldset>
 							<div id="legend">
 								<legend class="">Login</legend>
