@@ -1,8 +1,10 @@
+var recommenderService = "http://localhost:8080/AreaRecommenderService/AppServlet"; 
+
 function accessService_getLocationDataByName(name){	
 	var d;
 	
 	$.get(
-		"http://jbossews-jbdissertation.rhcloud.com/AppServlet",
+		recommenderService,
 		{ request : "location",
 		  name : name
 		},
@@ -20,14 +22,17 @@ function accessService_getLocationDataByName(name){
 
 var webService = {
     getLocationByName: function (name) {
-        return $.ajax({url:"http://jbossews-jbdissertation.rhcloud.com/AppServlet",data:{request:"location", name:name}});
+        return $.ajax({
+        	url:recommenderService,
+        	data: {request:"location", name:name}}
+        );
     },
 
 	getLocationsSimple : function(name) {
-		 return $.ajax({url:"http://jbossews-jbdissertation.rhcloud.com/AppServlet",data:{request:"locationsSimple"}});
+		 return $.ajax({url:recommenderService,data:{request:"locationsSimple"}});
 	},
     
     recommend : function(preferenceJson){
-    	return $.ajax({url:"http://jbossews-jbdissertation.rhcloud.com/AppServlet",data:{request:"recommend", preferences:preferenceJson}});
+    	return $.ajax({url:recommenderService,data:{request:"recommend", preferences:preferenceJson}});
     }
 };
