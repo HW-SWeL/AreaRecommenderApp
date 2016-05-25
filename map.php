@@ -45,10 +45,12 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<?php 
-		session_start(); 
-		if($_SESSION['username']==null) header( 'Location: index.html' ) ;
-	?>
+
+// Remove login feature and session caching
+// <?php 
+// 		session_start(); 
+// 		if($_SESSION['username']==null) header( 'Location: index.html' ) ;
+// 	?>
 
 
 <body>
@@ -172,7 +174,7 @@
 							selectedArea = [locations[i], markers[j]];
 							markers[j].setIcon('http://www.google.com/mapfiles/kml/paddle/blu-circle.png');
 
-							console.log("RANKED selectedRea: ", selectedArea);
+							console.log("RANKED selectedArea: ", selectedArea);
 							
 							break;			
 						}
@@ -300,7 +302,9 @@
 				}
 	
 				console.log("selectedArea=",selectedArea);
-				xmlhttp.open("GET","addSavedLocation.php?username="+username+"&location="+selectedArea[0].name,true);
+				xmlhttp.open("GET","addSavedLocation.php?location="+selectedArea[0].name,true);
+				// Removed username
+// 				xmlhttp.open("GET","addSavedLocation.php?username="+username+"&location="+selectedArea[0].name,true);
 				xmlhttp.send();
 			}
 			else{
@@ -467,12 +471,15 @@
 
 		var markers = [];
 		var selectedArea;	
-		var username = '<?php echo $_SESSION["username"]; ?>';
+		/**
+		 Comment out username
+		 var username = '<?php echo $_SESSION["username"]; ?>'; 
+		 */
 		var locations;
 		var geocoder = new google.maps.Geocoder();
 		
 		$('.dropdown-toggle').dropdown();
-		
+		//TODO: Working here
 		webService.getLocationsSimple().done(function(data){
 			locations = JSON.parse(data);
 			console.log(locations);
@@ -573,10 +580,10 @@
 
 		function drawPreferenceList(json){
 			var preferences = JSON.parse(json);
-			console.log("json=", json, "preferences=", preferences);
+			console.log("Draw preferences=", preferences);
 
 			var preferenceList = document.getElementById("recommenderList");
-
+			console.log("Preference list: ", preferenceList);
 			while(preferenceList.hasChildNodes()) {
 				preferenceList.removeChild(preferenceList.childNodes[0]);
 			}
@@ -593,26 +600,17 @@
 		}		
 		
 		function getPreferences() {
-			var sql = "SELECT * FROM user_preferences WHERE username='"+username+"'";
+			console.log("getPreferences()");
 			var http = new XMLHttpRequest();
-			var url = "getSavedLocations.php";
-			var params = "sql="+sql;
-			http.open("POST", url, true);
-
-			//Send the proper header information along with the request
-			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 			http.onreadystatechange = function() {//Call a function when the state changes.
-			    if(http.readyState == 4 && http.status == 200) {
-			        console.log("preferences", http.responseText);
+			    if (http.readyState == 4 && http.status == 200) {
+			        console.log("Request complete with preferences", http.responseText);
 			        drawPreferenceList(http.responseText);
 			    }
-			    else {
-					console.log("ERROR", http);
-			    }
 			}
-			console.log("HERE");
-			http.send(params);
+			http.open("GET", "getSavedLocations.php", true);
+			http.send();
 		}
 		
 		getPreferences();
