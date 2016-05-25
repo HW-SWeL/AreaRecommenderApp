@@ -46,11 +46,12 @@
     <![endif]-->
 </head>
 
-// Remove login feature and session caching
+<!--  Remove login feature and session caching
 // <?php 
 // 		session_start(); 
 // 		if($_SESSION['username']==null) header( 'Location: index.html' ) ;
 // 	?>
+-->
 
 
 <body>
