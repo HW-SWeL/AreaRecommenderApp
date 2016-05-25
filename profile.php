@@ -40,23 +40,19 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]--> 
   </head>  
-  	<?php 
-		session_start(); 
-		if($_SESSION['username']==null) header( 'Location: index.html' ) ;
-	?>
+<!-- //  	<?php 
+// 		session_start(); 
+// 		if($_SESSION['username']==null) header( 'Location: index.html' ) ;
+// 	?>
+-->
 	<script> 
-		var username = '<?php echo $_SESSION["username"]; ?>';
-		console.log("username=", username);
+//		var username = '<?php echo $_SESSION["username"]; ?>';
+// 		console.log("username=", username);
 
 		function getSavedLocations() {
-			var sql = "SELECT * FROM saved_locations WHERE username='"+username+"'";
 			var http = new XMLHttpRequest();
 			var url = "getSavedLocations.php";
-			var params = "sql="+sql;
-			http.open("POST", url, true);
-
-			//Send the proper header information along with the request
-			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			http.open("GET", url, true);
 
 			http.onreadystatechange = function() {//Call a function when the state changes.
 			    if(http.readyState == 4 && http.status == 200) {
@@ -65,7 +61,7 @@
 			        drawSavedLocations(savedLocations);
 			    }
 			}
-			http.send(params);
+			http.send();
 		}
 
 		function deletePreferences(pref) {
@@ -261,14 +257,9 @@
 		}
 		
 		function getPreferences() {
-			var sql = "SELECT * FROM user_preferences WHERE username='"+username+"'";
 			var http = new XMLHttpRequest();
 			var url = "getSavedLocations.php";
-			var params = "sql="+sql;
-			http.open("POST", url, true);
-
-			//Send the proper header information along with the request
-			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			http.open("GET", url, true);
 
 			http.onreadystatechange = function() {//Call a function when the state changes.
 			    if(http.readyState == 4 && http.status == 200) {
@@ -276,7 +267,7 @@
 			        drawPreferencePanels(http.responseText);
 			    }
 			}
-			http.send(params);
+			http.send();
 		}
 
 		getSavedLocations();
@@ -300,14 +291,12 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="profile.php">Profile</a></li>
-          	<li><a href="index.html">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
         
    <div class="container">		
-   		<p>Logged in as <?php echo $_SESSION['username'];?></p>
 		<div class="well well-lg" id="mainContent">	
 			<div id="preferenceContainer" class="col-md-8" >
 				<h4>Preference Profiles</h4>
