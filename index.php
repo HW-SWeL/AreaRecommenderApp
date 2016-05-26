@@ -80,8 +80,7 @@
 				<button type="button"
 					class="btn btn-danger dropdown-toggle topPanelElement"
 					data-toggle="dropdown" aria-expanded="false">
-					<span class="caret"></span> <span class="sr-only">Toggle
-						Dropdown</span>
+					<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
 				</button>
 				<ul class="dropdown-menu" role="menu" id="recommenderList">
 				</ul>
@@ -92,8 +91,7 @@
 				<button type="button" class="btn btn-danger ">Choose Area</button>
 				<button type="button" class="btn btn-danger dropdown-toggle"
 					data-toggle="dropdown" aria-expanded="false">
-					<span class="caret"></span> <span class="sr-only">Toggle
-						Dropdown</span>
+					<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
 				</button>
 				<ul class="dropdown-menu areaNameDropdown" role="menu" id="areaList"></ul>
 			</div>
@@ -115,8 +113,7 @@
 				<div class="col-lg-6">
 					<div class="input-group">
 						<input type="text" class="form-control"
-							placeholder="Search for..."> <span
-							class="input-group-btn">
+							placeholder="Search for..."> <span class="input-group-btn">
 							<button class="btn btn-default" type="button">Go!</button>
 						</span>
 					</div>
@@ -183,7 +180,8 @@
 
 		function plotRankedLocations(data){
 			var jsonData = JSON.parse(data);
-			console.log("json", jsonData);
+			console.log("Plot ranked locations");
+// 			console.log("json", jsonData);
 
 			var keys = Object.keys(jsonData);
 			console.log("unsorted keys", keys);
@@ -221,9 +219,9 @@
 		}
     
 	    function selectLocation(areaName, init){
-			console.log("areaName=",areaName, locations);
-	
-			console.log("markers", markers);
+		    console.log("Plot location markers on map");
+// 			console.log("areaName=",areaName, locations);
+// 			console.log("markers", markers);
 			
 			var i;
 			var found = true;
@@ -305,7 +303,7 @@
 		}
 	
 		function plotArea(location){
-			console.log(location, location.latLng);
+// 			console.log(location, location.latLng);
 			var latlng = location.latLng.split(",")
 		   	latlng = { lat:parseFloat(latlng[0]), lng:parseFloat(latlng[1]) };
 		   	var marker = addMarker(latlng, location.name);
@@ -318,9 +316,11 @@
 		}
 	
 		function showAreaInfo(areaName){			
+			console.log("Show area information for ", areaName);
 			webService.getLocationByName(areaName).done(function(data){
+				console.log("Area information returned for ", areaName);
 			    var location = JSON.parse(data);
-			    console.log(location);
+// 			    console.log(location);
 	
 			   	//Add a panel for each piece of information
 			   	var sidebar = document.getElementById('sidebar');
@@ -368,7 +368,7 @@
 			   	//	entertainment+="</br>"+location.entertainment[i].name;
 			   	//}
 			   	
-			   	console.log("location=", location);
+// 			   	console.log("location=", location);
 				sidebar.appendChild(createPanel(location.cafes, "cafes"));
 				sidebar.appendChild(createPanel(location.entertainment, "entertainment"));
 				sidebar.appendChild(createPanel(location.groceryShops, "grocery shops"));
@@ -473,7 +473,7 @@
 		$('.dropdown-toggle').dropdown();
 		webService.getLocationsSimple().done(function(data){
 			locations = JSON.parse(data);
-			console.log(locations);
+// 			console.log(locations);
 
 			for(var i = 0; i < locations.length; i++)
 		    { 
@@ -490,7 +490,7 @@
 	            list.appendChild(newNumberListItem);
 
 	            //plot location on map
-	            console.log(locations[i]);
+// 	            console.log(locations[i]);
 	            plotArea(locations[i]);	            
 	  	  	}		
 
@@ -606,7 +606,8 @@
 		}
 		
 		getPreferences();
-	</script>	
+	</script>
+
 </body>
 
 

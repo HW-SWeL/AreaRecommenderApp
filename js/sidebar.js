@@ -5,6 +5,7 @@ function createPanel(businessData, businessType){
 	var newOuterDiv = document.createElement('div')
 	
 	var heading = "Number of "+businessType+": "+businessData.length;
+	console.log(heading);
 	var headingButton = document.createElement('button')
     headingButton.setAttribute('class','btn btn-info sidebarHeader');
 	headingButton.setAttribute('type','button');
@@ -20,10 +21,10 @@ function createPanel(businessData, businessType){
 		businessDiv.addEventListener("mouseout", mouseOutPanel, false);
 		
 		businessDiv.innerHTML = businessData[i].name;
-		console.log("businessData=", businessData[i]);
+//		console.log("businessData=", businessData[i]);
 		businessDiv.setAttribute('data-info', JSON.stringify(businessData[i]));
 		businessDiv.setAttribute('businessType', businessType);
-		console.log("DIV = ", businessDiv);
+//		console.log("DIV = ", businessDiv);
 		
 		var innerDiv = document.createElement("div");
 		businessDiv.appendChild(innerDiv);
@@ -43,6 +44,7 @@ function createPanel2(businessData, businessType){
     newOuterDiv.setAttribute('class','panel panel-default');
 	
 	var heading = "Number of "+businessType+": "+businessData.length;
+	console.log(heading);
 	var headingButton = document.createElement('button')
     headingButton.setAttribute('class','btn btn-info');
 	headingButton.setAttribute('type','button');
@@ -62,10 +64,10 @@ function createPanel2(businessData, businessType){
 		businessDiv.addEventListener("mouseout", mouseOutPanel, false);
 		
 		businessDiv.innerHTML = businessData[i].name;
-		console.log("businessData=", businessData[i]);
+//		console.log("businessData=", businessData[i]);
 		businessDiv.setAttribute('data-info', JSON.stringify(businessData[i]));
 		businessDiv.setAttribute('businessType', businessType);
-		console.log("DIV = ", businessDiv);
+//		console.log("DIV = ", businessDiv);
 		collapseDiv.appendChild(businessDiv);
    	}
     
@@ -78,7 +80,8 @@ function createPanel2(businessData, businessType){
 function mouseOverPanel()
 {  
 	var data = JSON.parse(this.getAttribute("data-info"));
-	console.log("MouseOver", this, data, data.latlng, data.name);
+	console.log("MouseOver: ", data.name);
+//	console.log("MouseOver", this, data, data.latlng, data.name);
 	
 	var type = this.getAttribute('businessType');
 	console.log("type=", type, this.dataType);
@@ -97,10 +100,10 @@ function mouseOverPanel()
 	//console.log("latlng split=", latlng);
 	//activeBusinessMarker = addMarker({lat:parseFloat(latlng[0]), lng:parseFloat(latlng[1])}, data.name);
 	
-	console.log("childrenNodes = ", this.childNodes);
+//	console.log("childrenNodes = ", this.childNodes);
 	
 	var d =  JSON.parse(this.getAttribute("data-info"));
-	console.log("data", d);
+//	console.log("data", d);
 	
 	
 	var inner = "";
