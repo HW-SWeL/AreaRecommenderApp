@@ -46,14 +46,6 @@
     <![endif]-->
 </head>
 
-<!--  Remove login feature and session caching
-// <?php 
-// 		session_start(); 
-// 		if($_SESSION['username']==null) header( 'Location: index.html' ) ;
-// 	?>
--->
-
-
 <body>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -66,12 +58,11 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="map.php">Area Information App</a>
+				<a class="navbar-brand" href="">Area Information App</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="profile.php">Profile</a></li>
-					<li><a href="index.html">Logout</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -480,7 +471,6 @@
 		var geocoder = new google.maps.Geocoder();
 		
 		$('.dropdown-toggle').dropdown();
-		//TODO: Working here
 		webService.getLocationsSimple().done(function(data){
 			locations = JSON.parse(data);
 			console.log(locations);
@@ -602,6 +592,7 @@
 		
 		function getPreferences() {
 			console.log("getPreferences()");
+			var url = "preferenceManagement.php";
 			var http = new XMLHttpRequest();
 
 			http.onreadystatechange = function() {//Call a function when the state changes.
@@ -610,7 +601,7 @@
 			        drawPreferenceList(http.responseText);
 			    }
 			}
-			http.open("GET", "getSavedLocations.php", true);
+			http.open("GET", url, true);
 			http.send();
 		}
 		

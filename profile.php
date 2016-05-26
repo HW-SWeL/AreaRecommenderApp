@@ -40,14 +40,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]--> 
   </head>  
-<!-- //  	<?php 
-// 		session_start(); 
-// 		if($_SESSION['username']==null) header( 'Location: index.html' ) ;
-// 	?>
--->
 	<script> 
-//		var username = '<?php echo $_SESSION["username"]; ?>';
-// 		console.log("username=", username);
 
 		function getSavedLocations() {
 			var http = new XMLHttpRequest();
@@ -131,7 +124,7 @@
 		function goToLocation(location){
 			console.log("goto", location);
 
-			var url = "map.php";
+			var url = "index.php";
 			var form = $('<form action="' + url + '" method="get">' +
 			  '<input type="text" name="location" value="' + location + '" />' +
 			  '</form>');
@@ -258,7 +251,7 @@
 		
 		function getPreferences() {
 			var http = new XMLHttpRequest();
-			var url = "getSavedLocations.php";
+			var url = "preferenceManagement.php";
 			http.open("GET", url, true);
 
 			http.onreadystatechange = function() {//Call a function when the state changes.
@@ -286,7 +279,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="map.php">Area Information App</a>
+          <a class="navbar-brand" href="index.php">Area Information App</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">

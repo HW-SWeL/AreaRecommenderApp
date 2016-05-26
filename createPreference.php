@@ -461,12 +461,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="map.php">Area Information App</a>
+          <a class="navbar-brand" href="index.php">Area Information App</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav"> 
             <li><a href="profile.php">Profile</a></li>
-          	<li><a href="index.html">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

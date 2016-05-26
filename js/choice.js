@@ -10,7 +10,7 @@ function areaNameSubmit(areaName){
 				console.log("MATCH");
 			    var form = document.createElement("form");
 			    form.setAttribute("method", "post");
-			    form.setAttribute("action", "map.php");
+			    form.setAttribute("action", "index.php");
 
 	            var hiddenField = document.createElement("input");
 	            hiddenField.setAttribute("type", "hidden");
