@@ -1,5 +1,9 @@
 <?php
-$filename = 'preferences.json';
+// ini_set("log_errors", 1);
+// ini_set("error_log", "/tmp/php-error.log");
+
+$filename = "/tmp/preferences.json";
+
 
 $inputPreferenceText =  $_POST["preferenceText"];
 $inputPreferenceName =  $_POST["preferenceName"];
@@ -9,44 +13,16 @@ $preference = array(
 	'preferenceText' => $inputPreferenceText
 );
 
-// read the file if present
-$handle = @fopen($filename, 'r+');
-
-// create the file if needed
-if ($handle === null)
-{
-	$handle = fopen($filename, 'w+') or die("Unable to open file");
-}
-
-if ($handle)
-{
-	// seek to the end
-	fseek($handle, 0, SEEK_END);
-
-	// are we at the end of is the file empty
-	if (ftell($handle) > 0)
-	{
-		// move back a byte
-		fseek($handle, -1, SEEK_END);
-
-		// add the trailing comma
-		fwrite($handle, ',', 1);
-
-		// add the new json string
-		fwrite($handle, json_encode($preference) . ']');
-	}
-	else
-	{
-		// write the first event inside an array
-		fwrite($handle, json_encode(array($preference)));
-	}
-
-	// close the handle on the file
-	fclose($handle);
-	var_dump(http_response_code(200));
-	echo "success";
+if (file_exists($filename)) {
+// 	error_log("addPreferenceProfile: File exists");
+	$json = file_get_contents($filename);
+	$data = json_decode($json);
+	array_push($data, $preference);
+	file_put_contents($filename, json_encode($data));
 } else {
-	die("Unable to open file");
+// 	error_log("addPreferenceProfile: File does not exist");
+	$preferences[] = $preference;
+	file_put_contents($filename, json_encode($preferences));
 }
 
 ?>

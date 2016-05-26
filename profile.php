@@ -251,13 +251,15 @@
 		
 		function getPreferences() {
 			var http = new XMLHttpRequest();
-			var url = "preferenceManagement.php";
+			var url = "getSavedPreferences.php";
 			http.open("GET", url, true);
 
 			http.onreadystatechange = function() {//Call a function when the state changes.
 			    if(http.readyState == 4 && http.status == 200) {
 			        console.log("preferences", http.responseText);
 			        drawPreferencePanels(http.responseText);
+			    } else if (http.readyState == 4 && http.status != 200) {
+				    console.log("Error retrieving preferences: ", http.responseText);
 			    }
 			}
 			http.send();
