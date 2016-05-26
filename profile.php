@@ -233,12 +233,13 @@
 			
 			var i;
 			for(i=0;i<preferences.length;i++){
-				console.log(JSON.parse(preferences[i][2]));
+				console.log(preferences[i]);
+// 				console.log(JSON.parse(preferences[i][1]));
 				var div = document.createElement("div");
-				div.setAttribute("jsonData", preferences[i]);
+				div.setAttribute("jsonData", preferences[i]["preferenceText"]);
 				div.setAttribute("class", "preferencePanel_profile");				
 				var text = document.createElement("p");
-				text.innerHTML = "Profile "+i+": "+preferences[i][3];
+				text.innerHTML = "Profile " + preferences[i]["preferenceName"];
 				div.appendChild(text);
 
 				drawEditButton(div);				
