@@ -19,26 +19,18 @@
  
   <title>Area Information App</title>
   
-  	<?php 
-		session_start(); 
-		if($_SESSION['username']==null) header( 'Location: index.html' ) ;
-	?>
-  
 </head>
 <body>
 	<script>
 	var geocoder = new google.maps.Geocoder();
 	
-		var username = '<?php echo $_SESSION["username"]; ?>';
-		console.log("username=", username);
-
 		var json = '<?php echo $_POST["json"]; ?>';
 		console.log("json", json);
 		var id;
 
 		function fillEdit(json){
 			var data =  json.split(",");
-			console.log(data);
+			console.log("fillEdit: ", data);
 
 			document.getElementById("preferenceName").value = data[data.length-1];
 
@@ -405,7 +397,7 @@
 					console.log("Saved", JSON.parse(json), json);			
 					var http = new XMLHttpRequest();
 					var url = "addPreferenceProfile.php";
-					var params = "username="+username+"&preferenceText="+json+"&preferenceName="+document.getElementById("preferenceName").value;
+					var params = "preferenceText="+json+"&preferenceName="+document.getElementById("preferenceName").value;
 					http.open("POST", url, true);
 		
 					//Send the proper header information along with the request
@@ -416,6 +408,9 @@
 					        console.log("response", http.responseText);
 					        alert("Preference Profile Created");
 					        window.location.href = "profile.php";
+					    } else if (http.readyState == 4 && http.status != 200) {
+						    console.log("Server error");
+// 						    window.location.href = "createPreference.php";
 					    }
 					}
 					http.send(params);
@@ -425,7 +420,7 @@
 					var http = new XMLHttpRequest();
 					var url = "editPreferenceProfile.php";
 					console.log("ID==", id);
-					var params = "username="+username+"&preferenceText="+json+"&id="+id+"&preferenceName="+document.getElementById("preferenceName").value;
+					var params = "preferenceText="+json+"&id="+id+"&preferenceName="+document.getElementById("preferenceName").value;
 					http.open("POST", url, true);
 		
 					//Send the proper header information along with the request
