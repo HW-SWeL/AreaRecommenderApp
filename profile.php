@@ -59,6 +59,7 @@
 
 		function deletePreferences(pref) {
 			var http = new XMLHttpRequest();
+			//TODO: Fix action undertaken here
 			var url = "deletePreferenceProfile.php";
 			console.log("UNPARSE: ", pref);
 			console.log("PARSE: ", pref.split(","), pref.split(",")[1]);
@@ -134,7 +135,7 @@
 
 		function editPreference(json){
 			console.log("editPreference", json);
-			
+			//TODO: Fix action to be performed here
 			var url = "createPreference.php";
 			var form = $("<form action='" + url + "' method='post'>" +
 			  "<input type='text' name='json' value='" + json + "' />" +
@@ -234,7 +235,6 @@
 			var i;
 			for(i=0;i<preferences.length;i++){
 				console.log(preferences[i]);
-// 				console.log(JSON.parse(preferences[i][1]));
 				var div = document.createElement("div");
 				div.setAttribute("jsonData", preferences[i]["preferenceText"]);
 				div.setAttribute("class", "preferencePanel_profile");				
