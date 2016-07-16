@@ -542,17 +542,24 @@
 		});
 
 		function recommend(preference){
-			var split = preference.split(",");
-			var slicePref = split.slice(2);
-			console.log(slicePref, slicePref.join());
+			console.log("Recommend for preference: " + preference);
+			//Suspect that we only need to pass the json preference text to the recommender
+			//Commenting out the following as I think it is splitting out the preferences
+			//from the rest of the old representation which had user name and profile number
+			slicePref=preference;
+			//Format is not quite right, but probably due to the presence of the array 
+			//around the object
+// 			var split = preference.split(",");
+// 			var slicePref = split.slice(2);
+// 			console.log(slicePref, slicePref.join());
 
-			slicePref=slicePref.join();
-			slicePref = slicePref.substring(0, slicePref.length - 1);
+// 			slicePref=slicePref.join();
+// 			slicePref = slicePref.substring(0, slicePref.length - 1);
 
-			console.log(slicePref);
-			
-			var jsonPref = JSON.parse(slicePref);
-			console.log("recommending for ", preference, split, jsonPref);
+// 			console.log(slicePref);
+// 			//TODO: Get the correct preference data for the preference name
+// 			var jsonPref = JSON.parse(slicePref);
+// 			console.log("recommending for ", preference, split, jsonPref);
 
 			var recommendations = webService.recommend(slicePref).done(function(data){
 			    console.log("data", data);
@@ -583,8 +590,8 @@
 			for(i=0;i<preferences.length;i++){
 				var listItem = document.createElement("li");
 				var a = document.createElement("a");
-				a.setAttribute("href", "javascript:recommend('"+preferences[i]+"')");
-				a.innerHTML=preferences[i][1];
+				a.setAttribute("href", "javascript:recommend('"+preferences[i]["preferenceText"]+"')");
+				a.innerHTML=preferences[i]["preferenceName"];
 				listItem.appendChild(a);
 				preferenceList.appendChild(listItem);
 			}
@@ -592,7 +599,7 @@
 		
 		function getPreferences() {
 			console.log("getPreferences()");
-			var url = "preferenceManagement.php";
+			var url = "getSavedPreferences.php";
 			var http = new XMLHttpRequest();
 
 			http.onreadystatechange = function() {//Call a function when the state changes.
